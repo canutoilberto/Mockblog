@@ -34,7 +34,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-4xl font-bold mb-8 text-center">About Our Blog</h1>
 
         <section className="mb-12">
@@ -80,7 +80,7 @@ export default function AboutPage() {
                 alt="Blog growth illustration"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-lg object-center"
+                className="rounded-lg"
               />
             </div>
             <div className="order-1 md:order-2">

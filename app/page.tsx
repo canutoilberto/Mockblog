@@ -3,11 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Carousel } from "@/components/carousel/Carousel";
+import { CarouselImage } from "@/components/carousel/types"; // Importa a interface para definir o array de imagens
 
 export default function BlogLayout() {
   const [email, setEmail] = useState("");
@@ -22,6 +29,22 @@ export default function BlogLayout() {
     });
     setEmail("");
   };
+
+  // Definindo as imagens para o Carousel
+  const carouselImages: CarouselImage[] = [
+    {
+      src: "/culinary.avif",
+      alt: "Description of image 1",
+    },
+    {
+      src: "/community.avif",
+      alt: "Description of image 2",
+    },
+    {
+      src: "/small_1.avif",
+      alt: "Description of image 3",
+    },
+  ];
 
   const crewMembers = [
     {
@@ -83,6 +106,8 @@ export default function BlogLayout() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        {/* Passando as imagens para o Carousel */}
+        <Carousel images={carouselImages} autoSlideInterval={5000} />
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <div className="md:col-span-3">
             <Image
@@ -110,25 +135,25 @@ export default function BlogLayout() {
             />
           </div>
         </div>
-
         <section className="featured-posts">
           <h2 className="text-3xl font-bold text-center mb-8">
             Featured Posts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredPosts.map((post, index) => (
-              <Card key={index} className="overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  width={300}
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
+              <Card key={index} className="flex flex-col overflow-hidden">
+                <div className="relative h-48">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-xl">{post.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow">
                   <p className="text-sm text-muted-foreground mb-2">
                     {post.excerpt}
                   </p>
@@ -136,15 +161,21 @@ export default function BlogLayout() {
                     <span>{post.author}</span>
                     <span>{post.date}</span>
                   </div>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="mt-4 inline-block"
-                  >
-                    <Button variant="outline">Read More</Button>
-                  </Link>
                 </CardContent>
+                <CardFooter className="pt-6">
+                  <Link href={`/blog/${post.slug}`} className="w-full">
+                    <Button variant="outline" className="w-full">
+                      Read More
+                    </Button>
+                  </Link>
+                </CardFooter>
               </Card>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/blog">
+              <Button size="lg">All Posts</Button>
+            </Link>
           </div>
         </section>
 
