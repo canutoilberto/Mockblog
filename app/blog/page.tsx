@@ -139,7 +139,7 @@ export default function BlogPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Link href={`/blog/${post.slug}`} className="w-full">
+                <Link href={`/posts/${post.slug}`} className="w-full">
                   <Button variant="outline" className="w-full">
                     Read More
                   </Button>
