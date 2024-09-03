@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,11 +16,16 @@ const Navbar = () => {
 
   return (
     <nav className="bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 mt-4 mb-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-primary">
-              MyBlog
+              <Image
+                src="/mockblogg-logo.png"
+                alt="mockblogg logo"
+                width={150}
+                height={150}
+              />
             </Link>
           </div>
           <div className="hidden md:block">
