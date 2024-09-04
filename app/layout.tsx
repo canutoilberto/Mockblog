@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MockBlogg",
-  description: "Blog de teste",
+  description: "Blog de teste para portifólio",
 };
 
 export default function RootLayout({
@@ -22,8 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <Navbar />
