@@ -3,12 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/themeToggle/ThemeToggle";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,7 +23,11 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-primary">
               <Image
-                src="/mockblogg-logo.png"
+                src={
+                  theme === "dark"
+                    ? "/mockblogg-logo-dark.svg"
+                    : "/mockblogg-logo.png"
+                }
                 alt="mockblogg logo"
                 width={150}
                 height={150}
@@ -35,6 +41,7 @@ const Navbar = () => {
               <NavLink href="/about">About</NavLink>
               <NavLink href="/blog">Blog</NavLink>
               <NavLink href="/contact">Contact</NavLink>
+              <ThemeToggle />
             </div>
           </div>
           <div className="md:hidden">
