@@ -68,6 +68,7 @@ const Navbar = () => {
         } transition-all duration-300 ease-in-out`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <ThemeToggle />
           <MobileNavLink href="/" onClick={toggleMenu}>
             Home
           </MobileNavLink>
